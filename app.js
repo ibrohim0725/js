@@ -87,3 +87,82 @@ const multiplY = (a) => {
 // yani hohlaganchga qiymat berish mumkin faqat oxiriga () berish kerak
 const m = multiplY(1)(2)(3)(4)();
 console.log(m);
+
+//  +998(xx)-yyy-yy-yy raqamni tekshirish
+function checkNumberFormat(telNumber) {
+  let unkownChecker = true;
+  let orderedNumbersChecker = true;
+  const unkowns = {
+    0: "+",
+    1: "9",
+    2: "9",
+    3: "8",
+    4: "(",
+    7: ")",
+    8: "-",
+    12: "-",
+    15: "-",
+  };
+
+  const orderedNumbers={
+    code:Number(telNumber.slice(5,7)),
+    first:Number(telNumber.slice(9,12)),
+    second:Number(telNumber.slice(13,15)),
+    thrid:Number(telNumber.slice(16)),
+  }
+  console.log(orderedNumbers);
+  
+
+  for(const[index]of Object.entries(unkowns)){
+    if(telNumber[+index]!==unkowns[index]){
+      unkownChecker=false
+    }
+  }
+
+  for(const num in orderedNumbers){
+    if(typeof orderedNumbers[num] !=='number'){
+      orderedNumbersChecker=false
+    }
+  }
+  return unkownChecker && orderedNumbersChecker
+}
+console.log(checkNumberFormat("+998(91)-123-45-67"));
+
+
+
+// function checkNumberFormat(telNumber) {
+//   let unkownChecker = true;
+//   let orderedNumbersChecker = true;
+
+//   const unkowns = {
+//     0: "+",
+//     1: "9",
+//     2: "9",
+//     3: "8",
+//     4: "(",
+//     7: ")",
+//     8: "-",
+//     12: "-",
+//     15: "-",
+//   };
+
+//   for (const [index, symbol] of Object.entries(unkowns)) {
+//     if (telNumber[index] !== symbol) {
+//       unkownChecker = false;
+//     }
+//   }
+
+//   const code = telNumber.slice(5, 7);
+//   const first = telNumber.slice(9, 12);
+//   const second = telNumber.slice(13, 15);
+//   const third = telNumber.slice(16);
+
+//   // if (!/^\d{2}$/.test(code)) orderedNumbersChecker = false;
+//   // if (!/^\d{3}$/.test(first)) orderedNumbersChecker = false;
+//   // if (!/^\d{2}$/.test(second)) orderedNumbersChecker = false;
+//   // if (!/^\d{2}$/.test(third)) orderedNumbersChecker = false;
+
+//   return unkownChecker && orderedNumbersChecker;
+// }
+
+// console.log(checkNumberFormat("+998(91)-123-45-67")); // true
