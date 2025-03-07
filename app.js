@@ -72,21 +72,16 @@ console.log(result6);
 
 // curry function
 
-// bu yerda funksiya a qiymatni qabul qiladi yani "1"
 const multiplY = (a) => {
-  // va bu funksiya b qiymatni qabul qiladi yani "2"
-  return (b) => {
-    // bu yerda b argumentiga qiymat berilmasa yani () bosh qavs berilsa a qiymatni qaytaradi
-    if (!b) {
-      return a;
-    }
-    // berigan qiymatlarni bir biriga ko'paytiramiz
-    return multiplY(a * b);
+  let sum=a;
+  function multiplY1(b){
+    sum*=b;
+    multiplY1.result=sum
+    return multiplY1;
   };
+  return multiplY1
 };
-// yani hohlaganchga qiymat berish mumkin faqat oxiriga () berish kerak
-const m = multiplY(1)(2)(3)(4)();
-console.log(m);
+console.log(multiplY(10)(115)(10).result);
 
 //  +998(xx)-yyy-yy-yy raqamni tekshirish
 function checkNumberFormat(telNumber) {
@@ -112,6 +107,7 @@ function checkNumberFormat(telNumber) {
   }
   console.log(orderedNumbers);
   
+
 
   for(const[index]of Object.entries(unkowns)){
     if(telNumber[+index]!==unkowns[index]){
